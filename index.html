@@ -6,55 +6,65 @@
   <style>
     body {
       color: #fff;
-      background-color: #000;
-      font-family: ;
+      background: url("images/bg-bw.png");
+      font-family: Georgia;
+      font-size: 13px;
     }
 
     #main {
       margin: 0 auto;
       width: 800px;
       padding: 20px;
+      background-color: #000;
     }
 
-    #photo {
-      overflow: hidden;
-      padding-top: -20px;
-      height: 370px;
-      border-top: 2px solid #ccc;
-    }
-
-    #nav {
-      color: #fff;
+    #header {
+      position: relative;
       border-top: 2px solid #ccc;
       border-bottom: 2px solid #ccc;
-      padding-top: 00px;
-      padding-bottom: 00px;
+      height: 325px;
+      background-image: url("images/header.jpg");
     }
 
-    #nav h1 {
+    #header h1 {
+      font-size: 35px;
       font-weight: normal;
-      display: inline-block;
-      padding-right: 10px;
+      position: absolute;
+      bottom: -19px;
+      left: 15px;
     }
 
-    #nav a {
+    .nav {
       color: #fff;
-      padding: 5px;
+      margin: 7px 15px;
+    }
+
+    a {
+      color: #fff;
+    }
+
+    #content {
+      border-bottom: 2px solid #ccc;
     }
   </style>
 </head>
 <body>
   <div id="main">
-    <div id="photo">
-      <img src="photo.jpg" width="800px" />
-    </div>
-    <div id="nav">
+    <div id="header">
       <h1>the <b>Birdhive Boys</b></h1>
-      <a href="#">upcoming shows</a>
-      <a href="#">audio</a>
-      <a href="#">photos</a>
-      <a href="#">the boys</a>
+    </div>
+    <div class="nav">
+      <a href="#">schedule</a> &bull;
+      <a href="#">audio</a> &bull;
+      <a href="#">photos</a> &bull;
+      <a href="#">the boys</a> &bull;
       <a href="#">contact</a>
+    </div>
+    <div id="content">
+      <h2>Schedule</h2>
+      <p>
+        We play every tuesday at <a target="_blank" href="http://maps.google.com/maps?client=safari&rls=en&oe=UTF-8&um=1&ie=UTF-8&q=the+national+underground&fb=1&gl=us&hq=the+national+underground&hnear=New+York,+NY&cid=0,0,9013598530307897030&ei=kAhuS9K7Fcmo8Abb2N36BQ&sa=X&oi=local_result&ct=image&resnum=1&ved=0CAgQnwIwAA">the National Underground</a>
+      </p>
     </div>
   </div>
 </body>
