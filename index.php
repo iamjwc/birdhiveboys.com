@@ -161,9 +161,7 @@
   </script>
   <script type="text/javascript">
     try {
-      var pageTracker = _gat._getTracker("UA-2678375-3");
-      pageTracker._setDomainName("none");
-      pageTracker._setAllowLinker(true);
+      var pageTracker = _gat._getTracker("UA-12986686-1");
       pageTracker._trackPageview();
     } catch(err) {}
   </script>
