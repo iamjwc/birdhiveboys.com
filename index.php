@@ -1,3 +1,14 @@
+<?php
+  $email = $_POST['email'];
+  $file_name = "emails.txt";
+
+  if(isset($email)) {
+    $f = fopen($file_name, 'a') or die("Email couldn't be saved.");
+    fwrite($f, $email . "\n");
+    fclose($f);
+  }
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <html>
@@ -103,9 +114,9 @@
               If you'd like to hear about upcoming shows or other news from the boys,
               please sign up for the mailing list.
             </p>
-            <form>
+            <form method="post">
               <label>Email: 
-              <input type="input" />
+              <input type="email" name="email" placeholder="enter your email&hellip;" />
               </label>
               <input type="submit" value="sign up" />
             </form>
