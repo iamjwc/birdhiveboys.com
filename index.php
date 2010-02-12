@@ -107,9 +107,14 @@
           <td>
             <h2>Audio</h2>
             <p>
-              We are currently working on recording an album. Until that
-              is finished, we hope you'll enjoy these live clips.
+              We are currently working on recording an album. Until that is finished, we hope you'll enjoy these live clips from
+              <a target="_blank" href="http://www.rockwoodmusichall.com/">Rockwood Music Hall</a>.
             </p>
+            <p>
+              <a target="_blank" href="http://www.youtube.com/watch?v=UvRFlDMEVtY" title="Big Dufus at Rockwood Music Hall"><img src="images/big-dufus.jpg" width="100" height="75" alt="Big Dufus at Rockwood Music Hall" /></a>
+              <a target="_blank" href="http://www.youtube.com/watch?v=yALNFu9cCls" title="Little Maggie at Rockwood Music Hall"><img src="images/little-maggie.jpg" width="100" height="75" alt="Little Maggie at Rockwood Music Hall" /></a>
+            </p>
+
           </td>
           <td rowspan="2">
             <h2>Photos</h2>
