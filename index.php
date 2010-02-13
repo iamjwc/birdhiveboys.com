@@ -26,10 +26,12 @@
       margin: 0 auto;
       width: 800px;
       padding: 20px;
+      padding-top: 15px;
       background-color: #000;
     }
 
     #header {
+      margin-top: 5px;
       position: relative;
       border-top: 2px solid #444;
       height: 325px;
@@ -55,27 +57,37 @@
       text-decoration: none;
     }
 
+    img {
+      border-width: 0;
+    }
+
     #content {
       border-bottom: 2px solid #444;
       border-top: 2px solid #444;
     }
 
-		#content p {
-			line-height: 1.4em;
+    #content p, #content ul {
+      line-height: 1.4em;
 		}
 
-    #big-news {
+    #big-news, #signed-up {
       margin: 0;
-      margin-top: -5px;
       margin-bottom: 5px;
       padding: 7px;
-      background-color: #fb5291;
       font-size: 20px;
       text-align: center;
     }
-    #big-news p {
+    #big-news p, #signed-up p {
       margin: 0;
       padding: 0;
+    }
+
+    #big-news {
+      background-color: #fb5291;
+    }
+    #signed-up {
+      background-color: #fffb86;
+      color: #333;
     }
 
     td {
@@ -85,6 +97,11 @@
 </head>
 <body>
   <div id="main">
+    <?php if(isset($email)) { ?>
+      <div id="signed-up">
+        <p><strong>Thanks for Signing Up!</strong> You are now on our email list as <strong><?php echo $email; ?></strong>.</p>
+      </div>
+    <?php } ?>
     <div id="big-news">
       <p><strong>Valentine's Day Show!</strong> February 14<sup>th</sup> @ 10pm at <a href="http://www.spikehill.com/" target="_blank">Spike Hill</a> in <a href="http://maps.google.com/maps?client=safari&rls=en&oe=UTF-8&um=1&ie=UTF-8&q=spike+hill&fb=1&gl=us&hq=spike+hill&hnear=New+York,+NY&cid=0,0,7814079535875390974&ei=Wql0S7eeEo-QtgfSveixCg&sa=X&oi=local_result&ct=image&resnum=1&ved=0CAgQnwIwAA" target="_blank">Williamsburg</a></p>
     </div>
@@ -110,11 +127,10 @@
               We are currently working on recording an album. Until that is finished, we hope you'll enjoy these live clips from
               <a target="_blank" href="http://www.rockwoodmusichall.com/">Rockwood Music Hall</a>.
             </p>
-            <p>
-              <a target="_blank" href="http://www.youtube.com/watch?v=UvRFlDMEVtY" title="Big Dufus at Rockwood Music Hall"><img src="images/big-dufus.jpg" width="100" height="75" alt="Big Dufus at Rockwood Music Hall" /></a>
-              <a target="_blank" href="http://www.youtube.com/watch?v=yALNFu9cCls" title="Little Maggie at Rockwood Music Hall"><img src="images/little-maggie.jpg" width="100" height="75" alt="Little Maggie at Rockwood Music Hall" /></a>
-            </p>
-
+            <ul>
+              <li><a target="_blank" href="http://www.youtube.com/watch?v=UvRFlDMEVtY" title="Big Dufus at Rockwood Music Hall">Big Dufus</a></a>
+              <li><a target="_blank" href="http://www.youtube.com/watch?v=yALNFu9cCls" title="Little Maggie at Rockwood Music Hall">Litle Maggie</a>
+            </ul>
           </td>
           <td rowspan="2">
             <h2>Photos</h2>
