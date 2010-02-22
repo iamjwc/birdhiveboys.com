@@ -68,26 +68,37 @@
 
     #content p, #content ul {
       line-height: 1.4em;
-		}
+    }
 
-    #big-news, #signed-up {
+    .announcement {
       margin: 0;
       margin-bottom: 5px;
       padding: 7px;
       font-size: 20px;
       text-align: center;
     }
-    #big-news p, #signed-up p {
+    .announcement p {
       margin: 0;
       padding: 0;
     }
 
+    #big-news a {
+      color: #000;
+    }
     #big-news {
-      background-color: #fb5291;
+      background-color: #91cb91;
+      color: #000;
+    }
+    #weekly a {
+      color: #000;
+    }
+    #weekly {
+      background-color: #6e95b2;
+      color: #000;
     }
     #signed-up {
       background-color: #fffb86;
-      color: #333;
+      color: #000;
     }
 
     td {
@@ -98,12 +109,15 @@
 <body>
   <div id="main">
     <?php if(isset($email)) { ?>
-      <div id="signed-up">
+      <div class="announcement" id="signed-up">
         <p><strong>Thanks for Signing Up!</strong> You are now on our email list as <strong><?php echo $email; ?></strong>.</p>
       </div>
     <?php } ?>
-    <div id="big-news">
-      <p><strong>Valentine's Day Show!</strong> February 14<sup>th</sup> @ 10pm at <a href="http://www.spikehill.com/" target="_blank">Spike Hill</a> in <a href="http://maps.google.com/maps?client=safari&rls=en&oe=UTF-8&um=1&ie=UTF-8&q=spike+hill&fb=1&gl=us&hq=spike+hill&hnear=New+York,+NY&cid=0,0,7814079535875390974&ei=Wql0S7eeEo-QtgfSveixCg&sa=X&oi=local_result&ct=image&resnum=1&ved=0CAgQnwIwAA" target="_blank">Williamsburg</a></p>
+    <div class="announcement" id="big-news">
+      <p><strong>An Intimate Affair with The Birdhive Boys</strong></p><p>Sunday, April 18<sup>th</sup> @ 7pm at <a href="http://www.rockwoodmusichall.com" target="_blank">Rockwood Music Hall</a></p>
+    </div>
+    <div class="announcement" id="weekly">
+      <p><strong>Weekly Residency</strong> Every Tuesday @ 7pm at <a href="http://thenationalunderground.com" target="_blank">the National Underground</a></p>
     </div>
     <div id="header">
       <h1>the <b>Birdhive Boys</b></h1>
@@ -117,9 +131,7 @@
               We play every Tuesday from 7pm to 11pm at <a target="_blank" href="http://thenationalunderground.com">the National Underground</a> 
               located at <a target="_blank" href="http://maps.google.com/maps?client=safari&rls=en&oe=UTF-8&um=1&ie=UTF-8&q=the+national+underground&fb=1&gl=us&hq=the+national+underground&hnear=New+York,+NY&cid=0,0,9013598530307897030&ei=kAhuS9K7Fcmo8Abb2N36BQ&sa=X&oi=local_result&ct=image&resnum=1&ved=0CAgQnwIwAA">159 E Houston St</a>.
             </p>
-            <p>
-              <strong>Valentine's Day Show!</strong> February 14<sup>th</sup> @ 10pm at <a href="http://www.spikehill.com/" target="_blank">Spike Hill</a> in <a href="http://maps.google.com/maps?client=safari&rls=en&oe=UTF-8&um=1&ie=UTF-8&q=spike+hill&fb=1&gl=us&hq=spike+hill&hnear=New+York,+NY&cid=0,0,7814079535875390974&ei=Wql0S7eeEo-QtgfSveixCg&sa=X&oi=local_result&ct=image&resnum=1&ved=0CAgQnwIwAA" target="_blank">Williamsburg</a>
-            </p>
+            <p>An Intimate Affair with The Birdhive Boys Sunday, April 18<sup>th</sup> @ 7pm at <a href="http://www.rockwoodmusichall.com" target="_blank">Rockwood Music Hall</a></p>
           </td>
           <td>
             <h2>Audio</h2>
