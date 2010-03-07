@@ -82,6 +82,13 @@
       padding: 0;
     }
 
+    #big-news-1 a {
+      color: #000;
+    }
+    #big-news-1 {
+      background-color: #98b7b2;
+      color: #000;
+    }
     #big-news a {
       color: #000;
     }
@@ -113,6 +120,9 @@
         <p><strong>Thanks for Signing Up!</strong> You are now on our email list as <strong><?php echo $email; ?></strong>.</p>
       </div>
     <?php } ?>
+    <div class="announcement" id="big-news-1">
+      <p><strong>The Birdhive Boys and Dailey & Vincent</strong></p><p>Monday, March 22<sup>nd</sup> @ 8pm at <a href="http://livingroomny.com" target="_blank">the Living Room</a></p>
+    </div>
     <div class="announcement" id="big-news">
       <p><strong>An Intimate Affair with The Birdhive Boys</strong></p><p>Sunday, April 18<sup>th</sup> @ 7pm at <a href="http://www.rockwoodmusichall.com" target="_blank">Rockwood Music Hall</a></p>
     </div>
@@ -131,7 +141,8 @@
               We play every Tuesday from 7pm to 11pm at <a target="_blank" href="http://thenationalunderground.com">the National Underground</a> 
               located at <a target="_blank" href="http://maps.google.com/maps?client=safari&rls=en&oe=UTF-8&um=1&ie=UTF-8&q=the+national+underground&fb=1&gl=us&hq=the+national+underground&hnear=New+York,+NY&cid=0,0,9013598530307897030&ei=kAhuS9K7Fcmo8Abb2N36BQ&sa=X&oi=local_result&ct=image&resnum=1&ved=0CAgQnwIwAA">159 E Houston St</a>.
             </p>
-            <p>An Intimate Affair with The Birdhive Boys Sunday, April 18<sup>th</sup> @ 7pm at <a href="http://www.rockwoodmusichall.com" target="_blank">Rockwood Music Hall</a></p>
+            <p>The Birdhive Boys and Dailey & Vincent Monday, March 22nd @ 8pm at <a href="http://livingroomny.com" target="_blank">the Living Room</a></p>
+            <p>An Intimate Affair with The Birdhive Boys Sunday, April 18th @ 7pm at <a href="http://www.rockwoodmusichall.com" target="_blank">Rockwood Music Hall</a></p>
           </td>
           <td>
             <h2>Audio</h2>
