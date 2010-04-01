@@ -121,7 +121,7 @@
       </div>
     <?php } ?>
     <div class="announcement" id="big-news-1">
-      <p><strong>The Birdhive Boys and Dailey & Vincent</strong></p><p>Monday, March 22<sup>nd</sup> @ 8pm at <a href="http://livingroomny.com" target="_blank">the Living Room</a></p>
+      <p><strong>The Birdhive Boys will host the Parkside Bluegrass Jam on behalf of Michael Davs</strong></p><p>Monday, April 5<sup>th</sup> @ 9:30pm at <a href="http://www.parksidelounge.net" target="_blank">the Parkside Lounge</a></p>
     </div>
     <div class="announcement" id="big-news">
       <p><strong>An Intimate Affair with The Birdhive Boys</strong></p><p>Sunday, April 18<sup>th</sup> @ 7pm at <a href="http://www.rockwoodmusichall.com" target="_blank">Rockwood Music Hall</a></p>
@@ -147,12 +147,11 @@
           <td>
             <h2>Audio</h2>
             <p>
-              We are currently working on recording an album. Until that is finished, we hope you'll enjoy these live clips from
-              <a target="_blank" href="http://www.rockwoodmusichall.com/">Rockwood Music Hall</a>.
+              We are currently working on recording an album. Until that is finished, we hope you'll enjoy these live clips.
             </p>
             <ul>
-              <li><a target="_blank" href="http://www.youtube.com/watch?v=UvRFlDMEVtY" title="Big Dufus at Rockwood Music Hall">Big Dufus</a></a>
-              <li><a target="_blank" href="http://www.youtube.com/watch?v=yALNFu9cCls" title="Little Maggie at Rockwood Music Hall">Litle Maggie</a>
+              <li><a target="_blank" href="http://www.youtube.com/watch?v=tfyoEI804Is" title="The Ballad of Jesse James at Chelsea Market">The Ballad of Jesse James</a></a>
+              <li><a target="_blank" href="http://www.youtube.com/watch?v=CTwFtdz0DrE" title="Fox On The Run at Chelsea Market">Fox on the Run</a>
             </ul>
           </td>
           <td rowspan="2">
