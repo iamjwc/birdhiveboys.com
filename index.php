@@ -127,12 +127,6 @@
         <p><strong>Thanks for Signing Up!</strong> You are now on our email list as <strong><?php echo $email; ?></strong>.</p>
       </div>
     <?php } ?>
-    <div class="announcement" id="big-news-2">
-      <p><strong>Kicking off Saturday night of Bluegrass at Banjo Jims!</strong></p><p>Saturday, April 3<sup>rd</sup> @ 8pm at <a href="http://www.banjojims.com" target="_blank">Banjo Jims</a></p>
-    </div>
-    <div class="announcement" id="big-news-1">
-      <p><strong>Hosting the Parkside Bluegrass Jam on behalf of Michael Daves</strong></p><p>Monday, April 5<sup>th</sup> @ 9:30pm at <a href="http://www.parksidelounge.net" target="_blank">the Parkside Lounge</a></p>
-    </div>
     <div class="announcement" id="big-news">
       <p><strong>An Intimate Affair with The Birdhive Boys</strong></p><p>Sunday, April 18<sup>th</sup> @ 7pm at <a href="http://www.rockwoodmusichall.com" target="_blank">Rockwood Music Hall</a></p>
     </div>
@@ -150,12 +144,6 @@
             <p>
               We play every Tuesday from 7pm to 11pm at <a target="_blank" href="http://thenationalunderground.com">the National Underground</a> 
               located at <a target="_blank" href="http://maps.google.com/maps?client=safari&rls=en&oe=UTF-8&um=1&ie=UTF-8&q=the+national+underground&fb=1&gl=us&hq=the+national+underground&hnear=New+York,+NY&cid=0,0,9013598530307897030&ei=kAhuS9K7Fcmo8Abb2N36BQ&sa=X&oi=local_result&ct=image&resnum=1&ved=0CAgQnwIwAA">159 E Houston St</a>.
-            </p>
-            <p>
-              Kicking off night of Bluegrass at Banjo Jims on Saturday, April 3rd @ 8pm at <a href="http://www.banjojims.com" target="_blank">Banjo Jims</a>
-            </p>
-            <p>
-              Hosting the Parkside Bluegrass Jam on behalf of Michael Daves, Monday, April 5th @ 9:30pm at <a href="http://www.parksidelounge.net" target="_blank">the Parkside Lounge</a>
             </p>
             <p>An Intimate Affair with The Birdhive Boys Sunday, April 18th @ 7pm at <a href="http://www.rockwoodmusichall.com" target="_blank">Rockwood Music Hall</a></p>
           </td>
