@@ -16,4 +16,6 @@
       fclose($file);
     }
   }
+
+  header( 'Location: admin.php' ) ;
 ?>

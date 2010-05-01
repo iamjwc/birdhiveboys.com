@@ -2,7 +2,7 @@
   $email = $_POST['email'];
   $file_name = "emails.txt";
 
-  if(isset($email)) {
+  if (isset($email)) {
     $f = fopen($file_name, 'a') or die("Email couldn't be saved.");
     fwrite($f, $email . "\n");
     fclose($f);
@@ -81,6 +81,9 @@
       margin: 0;
       padding: 0;
     }
+    .announcement p span {
+      white-space: nowrap;
+    }
 
     #big-news-2 {
       background-color: #A0BDFF;
@@ -89,17 +92,17 @@
     #big-news-2 a {
       color: #000;
     }
-    #big-news-1 a {
+    .odd a {
       color: #000;
     }
-    #big-news-1 {
+    .odd {
       background-color: #98b7b2;
       color: #000;
     }
-    #big-news a {
+    .even a {
       color: #000;
     }
-    #big-news {
+    .even {
       background-color: #91cb91;
       color: #000;
     }
@@ -127,12 +130,35 @@
         <p><strong>Thanks for Signing Up!</strong> You are now on our email list as <strong><?php echo $email; ?></strong>.</p>
       </div>
     <?php } ?>
-    <div class="announcement" id="big-news">
-      <p><strong>An Intimate Affair with The Birdhive Boys</strong></p><p>Sunday, April 18<sup>th</sup> @ 7pm at <a href="http://www.rockwoodmusichall.com" target="_blank">Rockwood Music Hall</a></p>
-    </div>
+
+    <?php
+      exec('ls dates/', $fs);
+
+      $i = 0;
+      foreach ($fs as $f) {
+        $filename = 'dates/'.$f;
+        $file = fopen($filename, 'r');
+        $data = fread($file, filesize($filename));
+
+        list($title, $date, $time, $venue, $link) = explode('|', $data);
+
+        if ($i % 2 == 0) {
+          $class = "odd";
+        } else {
+          $class = "even";
+        }
+        $i = $i + 1;
+
+        echo "<div class='announcement $class'>";
+        echo "  <p><strong>$title</strong> <span>$date @ $time at <a href='$link' target='_blank'>$venue</a></span></p>";
+        echo "</div>";
+      }
+    ?>
+
     <div class="announcement" id="weekly">
-      <p><strong>Weekly Residency</strong> Every Tuesday @ 7pm at <a href="http://thenationalunderground.com" target="_blank">the National Underground</a></p>
+      <p><strong>Weekly Residency</strong> <span>Every Tuesday @ 7pm at <a href="http://thenationalunderground.com" target="_blank">the National Underground</a></span></p>
     </div>
+
     <div id="header">
       <h1>the <b>Birdhive Boys</b></h1>
     </div>
@@ -145,7 +171,6 @@
               We play every Tuesday from 7pm to 11pm at <a target="_blank" href="http://thenationalunderground.com">the National Underground</a> 
               located at <a target="_blank" href="http://maps.google.com/maps?client=safari&rls=en&oe=UTF-8&um=1&ie=UTF-8&q=the+national+underground&fb=1&gl=us&hq=the+national+underground&hnear=New+York,+NY&cid=0,0,9013598530307897030&ei=kAhuS9K7Fcmo8Abb2N36BQ&sa=X&oi=local_result&ct=image&resnum=1&ved=0CAgQnwIwAA">159 E Houston St</a>.
             </p>
-            <p>An Intimate Affair with The Birdhive Boys Sunday, April 18th @ 7pm at <a href="http://www.rockwoodmusichall.com" target="_blank">Rockwood Music Hall</a></p>
           </td>
           <td>
             <h2>Audio</h2>
@@ -155,7 +180,6 @@
             <ul>
               <li><a target="_blank" href="http://www.youtube.com/watch?v=tfyoEI804Is" title="The Ballad of Jesse James at Chelsea Market">The Ballad of Jesse James</a></a>
               <li><a target="_blank" href="http://www.youtube.com/watch?v=CTwFtdz0DrE" title="Fox On The Run at Chelsea Market">Fox on the Run</a>
-              <li><a target="_blank" href="http://www.youtube.com/watch?v=sGBo0ifEeKs" title="Carolina In The Pines at the National Underground">Carolina In The Pines</a>
               <li><a target="_blank" href="http://www.vimeo.com/10544875" title="Your Love Is Like A Flower at the Living Room">Your Love Is Like A Flower</a>
             </ul>
           </td>

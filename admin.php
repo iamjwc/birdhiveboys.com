@@ -70,6 +70,9 @@
       margin: 0;
       padding: 0;
     }
+    .announcement p span {
+      white-space: nowrap;
+    }
 
     #big-news-2 {
       background-color: #A0BDFF;
@@ -103,6 +106,20 @@
       background-color: #fffb86;
       color: #000;
     }
+    .odd a {
+      color: #000;
+    }
+    .odd {
+      background-color: #98b7b2;
+      color: #000;
+    }
+    .even a {
+      color: #000;
+    }
+    .even {
+      background-color: #91cb91;
+      color: #000;
+    }
 
     td {
       width: 33%;
@@ -117,8 +134,8 @@
       var venue = $('input[name=venue]').val();
       var link  = $('input[name=link]').val();
 
-      var html = '<p><strong>' + title + '</strong> ' + date + ' @ ' + time + ' at <a href="' + link + '" target="_blank">' + venue + '</a></p>';
-      $('div.announcement').html(html);
+      var html = '<p><strong>' + title + '</strong> <span>' + date + ' @ ' + time + ' at <a href="' + link + '" target="_blank">' + venue + '</a></span></p>';
+      $('div#example').html(html);
     }
 
     $(function() {
@@ -160,9 +177,39 @@
 
     <h2>Preview</h2>
 
-    <div class="announcement" id="weekly">
-      <p><strong>Weekly Residency</strong> Every Tuesday @ 7pm at <a href="http://thenationalunderground.com" target="_blank">the National Underground</a></p>
+    <div class="announcement" id="example">
+      <p><strong></strong> @ at <a href="" target="_blank"></a></p>
     </div>
+
+    <hr />
+
+    <h2>Remove Dates</h2>
+
+    <?php
+      exec('ls dates/', $fs);
+
+      $i = 0;
+      foreach ($fs as $f) {
+        $filename = 'dates/'.$f;
+        $file = fopen($filename, 'r');
+        $data = fread($file, filesize($filename));
+
+        list($title, $date, $time, $venue, $link) = explode('|', $data);
+
+        if ($i % 2 == 0) {
+          $class = "odd";
+        } else {
+          $class = "even";
+        }
+
+        echo "<div class='announcement $class'>";
+        echo "  <p><strong>$title</strong> <span>$date @ $time at <a href='$link' target='_blank'>$venue</a></span></p>";
+        echo "  <p><a class='delete' href='remove-file.php?index=$i'>Delete this.</a></p>";
+        echo "</div>";
+
+        $i = $i + 1;
+      }
+    ?>
   </div>
 </body>
 </html>
