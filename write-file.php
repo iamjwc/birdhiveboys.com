@@ -8,9 +8,9 @@
   if (isset($title)) {
     $data = $title.'|'.$date.'|'.$time.'|'.$title.'|'.$link;
 
-    $n = str_replace(' ', '', system('ls -l dates/ | wc -l'));
+    $n = str_replace(' ', '', exec('ls -l dates/ | wc -l'));
 
-    $file = fopen($n.'.txt', 'w');
+    $file = fopen('dates/'.$n.'.txt', 'w');
 		if ($file) {
       fwrite($file, $data);
       fclose($file);
