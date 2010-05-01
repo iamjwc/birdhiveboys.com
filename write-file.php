@@ -6,7 +6,7 @@
   $link  = $_POST['link'];
 
   if (isset($title)) {
-    $data = $title.'|'.$date.'|'.$time.'|'.$title.'|'.$link;
+    $data = $title.'|'.$date.'|'.$time.'|'.$venue.'|'.$link;
 
     $n = str_replace(' ', '', exec('ls -l dates/ | wc -l'));
 
