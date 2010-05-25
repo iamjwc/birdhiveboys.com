@@ -8,7 +8,7 @@
   if (isset($title)) {
     $data = $title.'|'.$date.'|'.$time.'|'.$venue.'|'.$link;
 
-    $n = str_replace(' ', '', exec('ls -l dates/ | wc -l'));
+    $n = str_replace(' ', '', exec('date +%Y_%m_%d_%H_%M_%S_%N'));
 
     $file = fopen('dates/'.$n.'.txt', 'w');
 		if ($file) {
