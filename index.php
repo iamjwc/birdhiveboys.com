@@ -14,6 +14,171 @@
 <html>
 <head>
   <title>The Birdhive Boys: Modern City Boys, Old Timey Music</title>
+
+  
+  <link href="http://www.jplayer.org/latest/skin/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="jplayer/jquery.jplayer.js"></script>
+  <script>
+  $(function() {
+    var Playlist = function(instance, playlist, options) {
+      var self = this;
+  
+      this.instance = instance; // String: To associate specific HTML with this playlist
+      this.playlist = playlist; // Array of Objects: The playlist
+      this.options = options; // Object: The jPlayer constructor options for this playlist
+  
+      this.current = 0;
+  
+      this.cssId = {
+        jPlayer: "jquery_jplayer_",
+        interface: "jp_interface_",
+        playlist: "jp_playlist_"
+      };
+      this.cssSelector = {};
+  
+      $.each(this.cssId, function(entity, id) {
+        self.cssSelector[entity] = "#" + id + self.instance;
+      });
+  
+      if(!this.options.cssSelectorAncestor) {
+        this.options.cssSelectorAncestor = this.cssSelector.interface;
+      }
+  
+      $(this.cssSelector.jPlayer).jPlayer(this.options);
+  
+      $(this.cssSelector.interface + " .jp-previous").click(function() {
+        self.playlistPrev();
+        $(this).blur();
+        return false;
+      });
+  
+      $(this.cssSelector.interface + " .jp-next").click(function() {
+        self.playlistNext();
+        $(this).blur();
+        return false;
+      });
+    };
+  
+    Playlist.prototype = {
+      displayPlaylist: function() {
+        var self = this;
+        $(this.cssSelector.playlist + " ul").empty();
+        for (i=0; i < this.playlist.length; i++) {
+          var listItem = (i === this.playlist.length-1) ? "<li class='jp-playlist-last'>" : "<li>";
+          listItem += "<a href='#' id='" + this.cssId.playlist + this.instance + "_item_" + i +"' tabindex='1'>"+ this.playlist[i].name +"</a>";
+  
+          // Create links to free media
+          if(this.playlist[i].free) {
+            var first = true;
+            listItem += "<div class='jp-free-media'>(";
+            $.each(this.playlist[i], function(property,value) {
+              if($.jPlayer.prototype.format[property]) { // Check property is a media format.
+                if(first) {
+                  first = false;
+                } else {
+                  listItem += " | ";
+                }
+                listItem += "<a id='" + self.cssId.playlist + self.instance + "_item_" + i + "_" + property + "' href='" + value + "' tabindex='1'>" + property + "</a>";
+              }
+            });
+            listItem += ")</span>";
+          }
+  
+          listItem += "</li>";
+  
+          // Associate playlist items with their media
+          $(this.cssSelector.playlist + " ul").append(listItem);
+          $(this.cssSelector.playlist + "_item_" + i).data("index", i).click(function() {
+            var index = $(this).data("index");
+            if(self.current !== index) {
+              self.playlistChange(index);
+            } else {
+              $(self.cssSelector.jPlayer).jPlayer("play");
+            }
+            $(this).blur();
+            return false;
+          });
+  
+          // Disable free media links to force access via right click
+          if(this.playlist[i].free) {
+            $.each(this.playlist[i], function(property,value) {
+              if($.jPlayer.prototype.format[property]) { // Check property is a media format.
+                $(self.cssSelector.playlist + "_item_" + i + "_" + property).data("index", i).click(function() {
+                  var index = $(this).data("index");
+                  $(self.cssSelector.playlist + "_item_" + index).click();
+                  $(this).blur();
+                  return false;
+                });
+              }
+            });
+          }
+        }
+      },
+      playlistInit: function(autoplay) {
+        if(autoplay) {
+          this.playlistChange(this.current);
+        } else {
+          this.playlistConfig(this.current);
+        }
+      },
+      playlistConfig: function(index) {
+        $(this.cssSelector.playlist + "_item_" + this.current).removeClass("jp-playlist-current").parent().removeClass("jp-playlist-current");
+        $(this.cssSelector.playlist + "_item_" + index).addClass("jp-playlist-current").parent().addClass("jp-playlist-current");
+        this.current = index;
+        $(this.cssSelector.jPlayer).jPlayer("setMedia", this.playlist[this.current]);
+      },
+      playlistChange: function(index) {
+        this.playlistConfig(index);
+        $(this.cssSelector.jPlayer).jPlayer("play");
+      },
+      playlistNext: function() {
+        var index = (this.current + 1 < this.playlist.length) ? this.current + 1 : 0;
+        this.playlistChange(index);
+      },
+      playlistPrev: function() {
+        var index = (this.current - 1 >= 0) ? this.current - 1 : this.playlist.length - 1;
+        this.playlistChange(index);
+      }
+    };
+  
+    var audioPlaylist = new Playlist("2", [
+      {
+        name:"Honest Man",
+        mp3: "http://birdhiveboys.com/thebirdhiveboys/thecornlady/honestman.mp3"
+      },
+      {
+        name:"Honey, You Don't Know My Mind",
+        mp3: "http://birdhiveboys.com/thebirdhiveboys/thecornlady/honey.mp3"
+      },
+      {
+        name:"Use Me Like You Used To",
+        mp3: "http://birdhiveboys.com/thebirdhiveboys/thecornlady/useme.mp3"
+      },
+      {
+        free: true,
+        name:"Mirror On The Wall",
+        mp3: "http://birdhiveboys.com/thebirdhiveboys/thecornlady/mirror.mp3"
+      }
+  
+    ], {
+      ready: function() {
+        audioPlaylist.displayPlaylist();
+        audioPlaylist.playlistInit(false); // Parameter is a boolean for autoplay.
+      },
+      ended: function() {
+        audioPlaylist.playlistNext();
+      },
+      play: function() {
+        $(this).jPlayer("pauseOthers");
+      },
+      swfPath: "../js",
+      supplied: "mp3"
+    });
+    
+
+  })
+  </script>
   <style>
     body {
       color: #fff;
@@ -156,7 +321,7 @@
     ?>
 
     <div class="announcement" id="weekly">
-      <p><strong>Weekly Residency</strong> <span>Every Tuesday @ 7pm at <a href="http://thenationalunderground.com" target="_blank">the National Underground</a></span></p>
+      <p><strong>Monthly Residency</strong> <span>First Tuesday of Every Month @ 8pm at <a href="http://thenationalunderground.com" target="_blank">the National Underground</a></span></p>
     </div>
 
     <div id="header">
@@ -165,42 +330,63 @@
     <div id="content">
       <table>
         <tr valign="top">
-          <td>
-            <h2>Schedule</h2>
-            <p>
-              We play every Tuesday from 7pm to 11pm at <a target="_blank" href="http://thenationalunderground.com">the National Underground</a> 
-              located at <a target="_blank" href="http://maps.google.com/maps?client=safari&rls=en&oe=UTF-8&um=1&ie=UTF-8&q=the+national+underground&fb=1&gl=us&hq=the+national+underground&hnear=New+York,+NY&cid=0,0,9013598530307897030&ei=kAhuS9K7Fcmo8Abb2N36BQ&sa=X&oi=local_result&ct=image&resnum=1&ved=0CAgQnwIwAA">159 E Houston St</a>.
-            </p>
+          <td rowspan="2" width="66%">
+            <h2>The Corn Lady</h2>
+            <div class="the-corn-lady">
+              <p>
+                Our first EP consists of three original tracks and one of our favorite standards.
+                Please have a listen and let us know what you think.
+              </p>
+
+              <div id="jquery_jplayer_2" class="jp-jplayer"></div>
+          
+              <div class="jp-audio">
+                <div class="jp-type-playlist">
+                  <div id="jp_interface_2" class="jp-interface">
+                    <ul class="jp-controls">
+                      <li><a href="#" class="jp-play" tabindex="1">play</a></li>
+                      <li><a href="#" class="jp-pause" tabindex="1">pause</a></li>
+                      <li><a href="#" class="jp-stop" tabindex="1">stop</a></li>
+                      <li><a href="#" class="jp-mute" tabindex="1">mute</a></li>
+                      <li><a href="#" class="jp-unmute" tabindex="1">unmute</a></li>
+                      <li><a href="#" class="jp-previous" tabindex="1">previous</a></li>
+                      <li><a href="#" class="jp-next" tabindex="1">next</a></li>
+                    </ul>
+                    <div class="jp-progress">
+                      <div class="jp-seek-bar">
+                        <div class="jp-play-bar"></div>
+                      </div>
+                    </div>
+                    <div class="jp-volume-bar">
+                      <div class="jp-volume-bar-value"></div>
+                    </div>
+                    <div class="jp-current-time"></div>
+                    <div class="jp-duration"></div>
+                  </div>
+                  <div id="jp_playlist_2" class="jp-playlist">
+                    <ul>
+                      <!-- The method Playlist.displayPlaylist() uses this unordered list -->
+                      <li></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br/>
           </td>
-          <td>
-            <h2>Audio</h2>
-            <p>
-              We are currently working on recording an album. Until that is finished, we hope you'll enjoy these live clips. Check out our <a target="_blank" href="http://www.youtube.com/user/TheBirdhiveBoys">YouTube channel</a>!
-            </p>
+          <td width="33%">
+            <h2>The Boys</h2>
             <ul>
-              <li><a target="_blank" href="http://www.youtube.com/watch?v=tfyoEI804Is" title="The Ballad of Jesse James at Chelsea Market">The Ballad of Jesse James</a></a>
-              <li><a target="_blank" href="http://www.youtube.com/watch?v=CTwFtdz0DrE" title="Fox On The Run at Chelsea Market">Fox on the Run</a>
-              <li><a target="_blank" href="http://www.vimeo.com/10544875" title="Your Love Is Like A Flower at the Living Room">Your Love Is Like A Flower</a>
+              <li><a target="_blank" href="http://www.myspace.com/bustedvacuum">Zack Bruce</a>: vocals, mandolin</li>
+              <li>Sam Bruce: vocals, guitar</li>
+              <li><a target="_blank" href="http://ellerymarshall.com/">Ellery Marshall</a>: banjo</li>
+              <li>Justin Camerer: guitar</li>
+              <li><a target="_blank" href="http://maxjohnsonmusic.com/live/">Max Johnson</a>: bass</li>
             </ul>
-          </td>
-          <td rowspan="2">
-            <h2>Photos</h2>
-            <p>
-            <a target="_blank" href="http://www.flickr.com/photos/iamjwc/4159754157/" title="IMG_0484 by iamjwc, on Flickr"><img src="http://farm5.static.flickr.com/4040/4159754157_12aed482f2_s.jpg" width="75" height="75" alt="IMG_0484" /></a>
-            <a target="_blank" href="http://www.flickr.com/photos/iamjwc/4160505924/" title="IMG_0480 by iamjwc, on Flickr"><img src="http://farm5.static.flickr.com/4040/4160505924_b163669efe_s.jpg" width="75" height="75" alt="IMG_0480" /></a>
-            <a target="_blank" href="http://www.flickr.com/photos/iamjwc/4159749355/" title="IMG_0468 by iamjwc, on Flickr"><img src="http://farm3.static.flickr.com/2705/4159749355_9452c5e2f4_s.jpg" width="75" height="75" alt="IMG_0468" /></a>
-            <a target="_blank" href="http://www.flickr.com/photos/iamjwc/4160501472/" title="IMG_0446 by iamjwc, on Flickr"><img src="http://farm3.static.flickr.com/2560/4160501472_27ddbb9a1a_s.jpg" width="75" height="75" alt="IMG_0446" /></a>
-            <a target="_blank" href="http://www.flickr.com/photos/iamjwc/4159745243/" title="IMG_0445 by iamjwc, on Flickr"><img src="http://farm3.static.flickr.com/2667/4159745243_88de43fc82_s.jpg" width="75" height="75" alt="IMG_0445" /></a>
-            <a target="_blank" href="http://www.flickr.com/photos/iamjwc/4160497708/" title="IMG_0430 by iamjwc, on Flickr"><img src="http://farm3.static.flickr.com/2685/4160497708_c7093a9ae1_s.jpg" width="75" height="75" alt="IMG_0430" /></a>
-            <a target="_blank" href="http://www.flickr.com/photos/iamjwc/4160495660/" title="IMG_0424 by iamjwc, on Flickr"><img src="http://farm3.static.flickr.com/2556/4160495660_ba80f9f15d_s.jpg" width="75" height="75" alt="IMG_0424" /></a>
-            <a target="_blank" href="http://www.flickr.com/photos/iamjwc/4159738795/" title="IMG_0412 by iamjwc, on Flickr"><img src="http://farm3.static.flickr.com/2549/4159738795_4df0163f50_s.jpg" width="75" height="75" alt="IMG_0412" /></a>
-            <a target="_blank" href="http://www.flickr.com/photos/iamjwc/4160490334/" title="IMG_0404 by iamjwc, on Flickr"><img src="http://farm3.static.flickr.com/2534/4160490334_6a5ec7e423_s.jpg" width="75" height="75" alt="IMG_0404" /></a>
-            <a target="_blank" href="http://www.flickr.com/photos/iamjwc/4160487592/" title="IMG_0400 by iamjwc, on Flickr"><img src="http://farm3.static.flickr.com/2576/4160487592_cf364de2e6_s.jpg" width="75" height="75" alt="IMG_0400" /></a>
-            </p>
           </td>
         </tr>
         <tr valign="top">
-          <td>
+          <td width="33%">
             <h2>Contact</h2>
             <p>
               If you'd like to hear about upcoming shows or other news from the boys,
@@ -212,15 +398,6 @@
               </label>
               <input type="submit" value="sign up" />
             </form>
-          </td>
-          <td>
-            <h2>The Boys</h2>
-            <ul>
-              <li><a target="_blank" href="http://www.myspace.com/bustedvacuum">Zack Bruce</a>: vocals, mandolin</li>
-              <li>Sam Bruce: vocals, guitar</li>
-              <li><a target="_blank" href="http://ellerymarshall.com/">Ellery Marshall</a>: banjo</li>
-              <li>Justin Camerer: guitar</li>
-            </ul>
           </td>
         </tr>
       </table>
