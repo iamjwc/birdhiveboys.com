@@ -156,7 +156,6 @@
         mp3: "http://birdhiveboys.com/thebirdhiveboys/thecornlady/useme.mp3"
       },
       {
-        free: true,
         name:"Mirror On The Wall",
         mp3: "http://birdhiveboys.com/thebirdhiveboys/thecornlady/mirror.mp3"
       }
@@ -338,6 +337,7 @@
                 Please have a listen and let us know what you think.
               </p>
 
+              <![if !IE]>
               <div id="jquery_jplayer_2" class="jp-jplayer"></div>
           
               <div class="jp-audio">
@@ -371,6 +371,10 @@
                   </div>
                 </div>
               </div>
+              <![endif]>
+              <!--[if IE]>
+              Our player is not available in IE. Please check back with <a href="http://www.google.com/chrome">Google Chrome</a>
+              <![endif]-->
             </div>
             <br/>
           </td>
@@ -388,6 +392,7 @@
         <tr valign="top">
           <td width="33%">
             <h2>Contact</h2>
+            <p>Please feel free to contact us at <a href="mailto:thebirdhiveboys@gmail.com">thebirdhiveboys@gmail.com</a></p>
             <p>
               If you'd like to hear about upcoming shows or other news from the boys,
               please sign up for the mailing list.
